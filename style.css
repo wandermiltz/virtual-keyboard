@@ -9,9 +9,11 @@ body {
 }
 
 .title {
-  font-size: 34px;
+  font-size: 30px;
+  line-height: 50px;
   color: #37393F;
   text-align: center;
+  font-weight: normal;
 }
 
 .section {
@@ -21,16 +23,30 @@ body {
 }
 
 .textarea {
-  display: block;
-  width: 800px;
-  height: 250px;
+  margin-bottom: 40px;
+  width: 600px;
+  height: 150px;
   padding: 15px;
   font-size: 18px;
   color: #37393F;
 }
 
+.keyboard {
+  width: 800px;
+  padding: 10px;
+  background: #A6ABBD;
+  border: 2px solid #37393F;
+  border-radius: 30px;
+}
+
+.keyboard__row {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
 .footer {
   padding-top: 30px;
   text-align: center;
-  line-height: 36px;
+  line-height: 30px;
 }
