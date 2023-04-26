@@ -28,3 +28,9 @@ body {
   font-size: 18px;
   color: #37393F;
 }
+
+.footer {
+  padding-top: 30px;
+  text-align: center;
+  line-height: 36px;
+}
