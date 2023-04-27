@@ -58,3 +58,21 @@ body {
   text-align: center;
   line-height: 30px;
 }
+
+.Enter,
+.Tab,
+.CapsLock,
+.ShiftLeft,
+.ShiftRight,
+.Backspace {
+  width: 90px;
+}
+
+.Space {
+  width: 280px;
+}
+
+.MetaRight,
+.MetaLeft {
+  width: 60px;
+}

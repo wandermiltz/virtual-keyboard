@@ -17,7 +17,7 @@ textarea.className = 'textarea';
 keyboard.className = 'keyboard';
 
 footer.className = 'footer';
-footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: Command + Space';
+footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: command + space';
 
 const body = document.querySelector('body');
 
@@ -55,7 +55,7 @@ keyboardKeysArr[0] = getKeyboardKeys(14);
 keyboardKeysArr[1] = getKeyboardKeys(14);
 keyboardKeysArr[2] = getKeyboardKeys(13);
 keyboardKeysArr[3] = getKeyboardKeys(13);
-keyboardKeysArr[4] = getKeyboardKeys(9);
+keyboardKeysArr[4] = getKeyboardKeys(10);
 
 keyboard.append(...keyboardRowsArr);
 keyboardRowsArr[0].append(...keyboardKeysArr[0]);

@@ -199,12 +199,12 @@ keys[0] = [
   {
     code: 'Backspace',
     eng: {
-      caseDown: 'Backspace',
-      caseUp: 'Backspace',
+      caseDown: 'delete',
+      caseUp: 'delete',
     },
     rus: {
-      caseDown: 'Backspace',
-      caseUp: 'Backspace',
+      caseDown: 'delete',
+      caseUp: 'delete',
     },
   },
 ];
@@ -212,12 +212,12 @@ keys[1] = [
   {
     code: 'Tab',
     eng: {
-      caseDown: 'Tab',
-      caseUp: 'Tab',
+      caseDown: 'tab',
+      caseUp: 'tab',
     },
     rus: {
-      caseDown: 'Tab',
-      caseUp: 'Tab',
+      caseDown: 'tab',
+      caseUp: 'tab',
     },
   },
   {
@@ -361,14 +361,18 @@ keys[1] = [
     },
   },
   {
-    code: 'Enter',
+    code: 'Backslash',
     eng: {
-      caseDown: 'Enter',
-      caseUp: 'Enter',
+      caps: '\\',
+      caseDown: '\\',
+      caseUp: '|',
+      shiftCaps: '|',
     },
     rus: {
-      caseDown: 'Enter',
-      caseUp: 'Enter',
+      caps: '\\',
+      caseDown: '\\',
+      caseUp: '/',
+      shiftCaps: '/',
     },
   },
 ];
@@ -377,12 +381,12 @@ keys[2] = [
   {
     code: 'CapsLock',
     eng: {
-      caseDown: 'CapsLock',
-      caseUp: 'CapsLock',
+      caseDown: 'caps lock',
+      caseUp: 'caps lock',
     },
     rus: {
-      caseDown: 'CapsLock',
-      caseUp: 'CapsLock',
+      caseDown: 'caps lock',
+      caseUp: 'caps lock',
     },
   },
   {
@@ -514,19 +518,16 @@ keys[2] = [
       shiftCaps: 'э',
     },
   },
+
   {
-    code: 'Backslash',
+    code: 'Enter',
     eng: {
-      caps: '\\',
-      caseDown: '\\',
-      caseUp: '|',
-      shiftCaps: '|',
+      caseDown: 'return',
+      caseUp: 'return',
     },
     rus: {
-      caps: '\\',
-      caseDown: '\\',
-      caseUp: '/',
-      shiftCaps: '/',
+      caseDown: 'return',
+      caseUp: 'return',
     },
   },
 ];
@@ -535,12 +536,12 @@ keys[3] = [
   {
     code: 'ShiftLeft',
     eng: {
-      caseDown: 'Shift',
-      caseUp: 'Shift',
+      caseDown: 'shift',
+      caseUp: 'shift',
     },
     rus: {
-      caseDown: 'Shift',
-      caseUp: 'Shift',
+      caseDown: 'shift',
+      caseUp: 'shift',
     },
   },
   {
@@ -679,12 +680,12 @@ keys[3] = [
   {
     code: 'ShiftRight',
     eng: {
-      caseDown: 'Shift',
-      caseUp: 'Shift',
+      caseDown: 'shift',
+      caseUp: 'shift',
     },
     rus: {
-      caseDown: 'Shift',
-      caseUp: 'Shift',
+      caseDown: 'shift',
+      caseUp: 'shift',
     },
   },
 ];
@@ -693,23 +694,23 @@ keys[4] = [
   {
     code: 'ControlLeft',
     eng: {
-      caseDown: 'Ctrl',
-      caseUp: 'Ctrl',
+      caseDown: 'ctrl',
+      caseUp: 'ctrl',
     },
     rus: {
-      caseDown: 'Ctrl',
-      caseUp: 'Ctrl',
+      caseDown: 'ctrl',
+      caseUp: 'ctrl',
     },
   },
   {
     code: 'AltLeft',
     eng: {
-      caseDown: 'Alt',
-      caseUp: 'Alt',
+      caseDown: 'alt',
+      caseUp: 'alt',
     },
     rus: {
-      caseDown: 'Alt',
-      caseUp: 'Alt',
+      caseDown: 'alt',
+      caseUp: 'alt',
     },
   },
   {
@@ -735,17 +736,6 @@ keys[4] = [
     },
   },
   {
-    code: 'AltRight',
-    eng: {
-      caseDown: 'Alt',
-      caseUp: 'Alt',
-    },
-    rus: {
-      caseDown: 'Alt',
-      caseUp: 'Alt',
-    },
-  },
-  {
     code: 'MetaRight',
     eng: {
       caseDown: 'cmd',
@@ -754,6 +744,17 @@ keys[4] = [
     rus: {
       caseDown: 'cmd',
       caseUp: 'cmd',
+    },
+  },
+  {
+    code: 'AltRight',
+    eng: {
+      caseDown: 'alt',
+      caseUp: 'alt',
+    },
+    rus: {
+      caseDown: 'alt',
+      caseUp: 'alt',
     },
   },
   {
@@ -787,6 +788,17 @@ keys[4] = [
     rus: {
       caseDown: '►',
       caseUp: '►',
+    },
+  },
+  {
+    code: 'ControlRight',
+    eng: {
+      caseDown: 'ctrl',
+      caseUp: 'ctrl',
+    },
+    rus: {
+      caseDown: 'ctrl',
+      caseUp: 'ctrl',
     },
   },
 ];
