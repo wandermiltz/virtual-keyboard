@@ -2,7 +2,7 @@ const header = document.createElement('header');
 const main = document.createElement('main');
 const section = document.createElement('section');
 const textarea = document.createElement('textarea');
-const divKeyboard = document.createElement('div');
+const keyboard = document.createElement('div');
 const h1 = document.createElement('h1');
 const footer = document.createElement('footer');
 
@@ -11,7 +11,7 @@ h1.className = 'title';
 
 section.className = 'section';
 textarea.className = 'textarea';
-divKeyboard.className = 'keyboard';
+keyboard.className = 'keyboard';
 
 footer.className = 'footer';
 footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: Command + Space';
@@ -24,9 +24,7 @@ body.append(footer);
 main.append(section);
 header.append(h1);
 section.append(textarea);
-section.append(divKeyboard);
-
-const keyboard = document.querySelector('.keyboard');
+section.append(keyboard);
 
 function getKeyboardRows(rowsCount) {
   const keyboardRowsArr = [];
@@ -48,12 +46,11 @@ function getKeyboardKeys(keyCount) {
   return keyboardKeysArr;
 }
 
-keyboard.append(...getKeyboardRows(5));
+const keyboardRows = getKeyboardRows(5);
 
-const keyboardRow = document.querySelectorAll('.keyboard__row');
-
-keyboardRow[0].append(...getKeyboardKeys(15));
-keyboardRow[1].append(...getKeyboardKeys(14));
-keyboardRow[2].append(...getKeyboardKeys(14));
-keyboardRow[3].append(...getKeyboardKeys(14));
-keyboardRow[4].append(...getKeyboardKeys(10));
+keyboard.append(...keyboardRows);
+keyboardRows[0].append(...getKeyboardKeys(15));
+keyboardRows[1].append(...getKeyboardKeys(14));
+keyboardRows[2].append(...getKeyboardKeys(14));
+keyboardRows[3].append(...getKeyboardKeys(14));
+keyboardRows[4].append(...getKeyboardKeys(10));
