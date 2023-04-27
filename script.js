@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/extensions
+import keys from './keyboard-keys.js';
+
 const header = document.createElement('header');
 const main = document.createElement('main');
 const section = document.createElement('section');
@@ -28,7 +31,7 @@ section.append(keyboard);
 
 function getKeyboardRows(rowsCount) {
   const keyboardRowsArr = [];
-  for (let i = 1; i <= rowsCount; i += 1) {
+  for (let i = 0; i < rowsCount; i += 1) {
     const keyboardRow = document.createElement('div');
     keyboardRow.className = 'keyboard__row';
     keyboardRowsArr.push(keyboardRow);
@@ -38,7 +41,7 @@ function getKeyboardRows(rowsCount) {
 
 function getKeyboardKeys(keyCount) {
   const keyboardKeysArr = [];
-  for (let i = 1; i <= keyCount; i += 1) {
+  for (let i = 0; i < keyCount; i += 1) {
     const keyboardKey = document.createElement('div');
     keyboardKey.className = 'keyboard__key';
     keyboardKeysArr.push(keyboardKey);
@@ -46,11 +49,28 @@ function getKeyboardKeys(keyCount) {
   return keyboardKeysArr;
 }
 
-const keyboardRows = getKeyboardRows(5);
+const keyboardRowsArr = getKeyboardRows(5);
+const keyboardKeysArr = [];
+keyboardKeysArr[0] = getKeyboardKeys(14);
+keyboardKeysArr[1] = getKeyboardKeys(14);
+keyboardKeysArr[2] = getKeyboardKeys(13);
+keyboardKeysArr[3] = getKeyboardKeys(13);
+keyboardKeysArr[4] = getKeyboardKeys(9);
 
-keyboard.append(...keyboardRows);
-keyboardRows[0].append(...getKeyboardKeys(15));
-keyboardRows[1].append(...getKeyboardKeys(14));
-keyboardRows[2].append(...getKeyboardKeys(14));
-keyboardRows[3].append(...getKeyboardKeys(14));
-keyboardRows[4].append(...getKeyboardKeys(10));
+keyboard.append(...keyboardRowsArr);
+keyboardRowsArr[0].append(...keyboardKeysArr[0]);
+keyboardRowsArr[1].append(...keyboardKeysArr[1]);
+keyboardRowsArr[2].append(...keyboardKeysArr[2]);
+keyboardRowsArr[3].append(...keyboardKeysArr[3]);
+keyboardRowsArr[4].append(...keyboardKeysArr[4]);
+
+function addKeyboardKeyValues() {
+  for (let i = 0; i < keyboardKeysArr.length; i += 1) {
+    for (let j = 0; j < keyboardKeysArr[i].length; j += 1) {
+      keyboardKeysArr[i][j].classList.add(keys[i][j].code);
+      keyboardKeysArr[i][j].innerText = keys[i][j].eng.caseDown;
+    }
+  }
+}
+
+addKeyboardKeyValues();
