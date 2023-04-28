@@ -158,13 +158,13 @@ keyboardKeys.forEach((key) => {
 });
 
 body.addEventListener('keydown', (event) => {
+  console.log(event.code);
   event.preventDefault();
   if (event.code === 'Enter') {
-    console.log(event.code);
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
     const text = textarea.value;
-    textarea.value = `${text.slice(0, textarea.selectionStart)}\n${text.slice(end)}`;
+    textarea.value = `${text.slice(0, start)}\n${text.slice(end)}`;
     textarea.selectionStart = start + 1;
     textarea.selectionEnd = start + 1;
   }
@@ -177,5 +177,15 @@ body.addEventListener('keydown', (event) => {
     textarea.value = `${text.slice(0, start)}${key}${text.slice(end)}`;
     textarea.selectionStart = start + 1;
     textarea.selectionEnd = start + 1;
+  }
+
+  if (event.code === 'Tab') {
+    const tab = '    ';
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    textarea.value = `${text.slice(0, start)}${tab}${text.slice(end)}`;
+    textarea.selectionStart = start + 4;
+    textarea.selectionEnd = start + 4;
   }
 });
