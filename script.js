@@ -13,6 +13,7 @@ h1.className = 'title';
 
 section.className = 'section';
 textarea.className = 'textarea';
+textarea.setAttribute('autofocus', '');
 keyboard.className = 'keyboard';
 
 footer.className = 'footer';
@@ -27,6 +28,10 @@ main.append(section);
 header.append(h1);
 section.append(textarea);
 section.append(keyboard);
+
+textarea.addEventListener('blur', () => {
+  textarea.focus();
+});
 
 function getKeyboardRows(rowsCount) {
   const keyboardRowsArr = [];
@@ -153,6 +158,7 @@ keyboardKeys.forEach((key) => {
 });
 
 body.addEventListener('keydown', (event) => {
+  event.preventDefault();
   if (event.code === 'Enter') {
     console.log(event.code);
     const start = textarea.selectionStart;
