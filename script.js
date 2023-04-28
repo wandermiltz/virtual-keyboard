@@ -1,4 +1,4 @@
-import keys from './keyboard-keys.js';
+import { allKeys, functionalKeys } from './keyboard-keys.js';
 
 const header = document.createElement('header');
 const main = document.createElement('main');
@@ -71,7 +71,7 @@ keyboardRowsArr[4].append(...keyboardKeysArr[4]);
 function addKeyboardKeyValues() {
   for (let i = 0; i < keyboardKeysArr.length; i += 1) {
     for (let j = 0; j < keyboardKeysArr[i].length; j += 1) {
-      keyboardKeysArr[i][j].classList.add(keys[i][j].code);
+      keyboardKeysArr[i][j].classList.add(allKeys[i][j].code);
 
       const engKey = document.createElement('span');
       const rusKey = document.createElement('span');
@@ -103,11 +103,11 @@ function addKeyboardKeyValues() {
       shiftCapsRus.classList.add('shiftCaps');
       capsRus.classList.add('caps');
 
-      caseDownEng.innerText = keys[i][j].eng.caseDown;
-      caseUpEng.innerText = keys[i][j].eng.caseUp;
+      caseDownEng.innerText = allKeys[i][j].eng.caseDown;
+      caseUpEng.innerText = allKeys[i][j].eng.caseUp;
 
-      caseDownRus.innerText = keys[i][j].rus.caseDown;
-      caseUpRus.innerText = keys[i][j].rus.caseUp;
+      caseDownRus.innerText = allKeys[i][j].rus.caseDown;
+      caseUpRus.innerText = allKeys[i][j].rus.caseUp;
 
       keyboardKeysArr[i][j].append(engKey);
       keyboardKeysArr[i][j].append(rusKey);
@@ -165,6 +165,16 @@ body.addEventListener('keydown', (event) => {
     const end = textarea.selectionEnd;
     const text = textarea.value;
     textarea.value = `${text.slice(0, textarea.selectionStart)}\n${text.slice(end)}`;
+    textarea.selectionStart = start + 1;
+    textarea.selectionEnd = start + 1;
+  }
+
+  if (!functionalKeys.includes(event.code)) {
+    const key = document.querySelector(`.${event.code}`).innerText;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    textarea.value = `${text.slice(0, start)}${key}${text.slice(end)}`;
     textarea.selectionStart = start + 1;
     textarea.selectionEnd = start + 1;
   }

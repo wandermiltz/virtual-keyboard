@@ -54,7 +54,7 @@ body {
   height: 40px;
   border-radius: 20px;
   background-color: #37393F;
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
   transition: 0.3s;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -73,15 +73,25 @@ body {
 .ShiftRight,
 .Backspace {
   width: 90px;
+  font-size: 12px;
+}
+
+.ControlLeft,
+.ControlRight,
+.AltRight,
+.AltLeft {
+  font-size: 12px;
 }
 
 .Space {
   width: 280px;
+  font-size: 12px;
 }
 
 .MetaRight,
 .MetaLeft {
   width: 60px;
+  font-size: 12px;
 }
 
 .hidden {
@@ -90,6 +100,7 @@ body {
 
 .hover {
   background-color: #2d98aa;
+  cursor: pointer;
 }
 
 .pressed {

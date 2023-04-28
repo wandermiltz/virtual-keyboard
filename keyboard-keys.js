@@ -1,6 +1,21 @@
-const keys = [];
+export const functionalKeys = [
+  'AltLeft',
+  'AltRight',
+  'CapsLock',
+  'ControlLeft',
+  'ControlRight',
+  'Enter',
+  'MetaLeft',
+  'MetaRight',
+  'ShiftLeft',
+  'Space',
+  'Tab',
+  'Backspace',
+];
 
-keys[0] = [
+export const allKeys = [];
+
+allKeys[0] = [
   {
     code: 'Backquote',
     eng: {
@@ -208,7 +223,7 @@ keys[0] = [
     },
   },
 ];
-keys[1] = [
+allKeys[1] = [
   {
     code: 'Tab',
     eng: {
@@ -377,7 +392,7 @@ keys[1] = [
   },
 ];
 
-keys[2] = [
+allKeys[2] = [
   {
     code: 'CapsLock',
     eng: {
@@ -532,7 +547,7 @@ keys[2] = [
   },
 ];
 
-keys[3] = [
+allKeys[3] = [
   {
     code: 'ShiftLeft',
     eng: {
@@ -690,7 +705,7 @@ keys[3] = [
   },
 ];
 
-keys[4] = [
+allKeys[4] = [
   {
     code: 'ControlLeft',
     eng: {
@@ -802,5 +817,3 @@ keys[4] = [
     },
   },
 ];
-
-export default keys;
