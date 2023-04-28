@@ -160,6 +160,8 @@ keyboardKeys.forEach((key) => {
 body.addEventListener('keydown', (event) => {
   console.log(event.code);
   event.preventDefault();
+  document.querySelector(`.${event.code}`).classList.add('pressed');
+
   if (event.code === 'Enter') {
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
@@ -188,4 +190,9 @@ body.addEventListener('keydown', (event) => {
     textarea.selectionStart = start + 4;
     textarea.selectionEnd = start + 4;
   }
+});
+
+body.addEventListener('keyup', (event) => {
+  event.preventDefault();
+  document.querySelector(`.${event.code}`).classList.remove('pressed');
 });

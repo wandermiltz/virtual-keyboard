@@ -11,6 +11,8 @@ export const functionalKeys = [
   'Space',
   'Tab',
   'Backspace',
+  'ShiftLeft',
+  'ShiftRight',
 ];
 
 export const allKeys = [];
