@@ -522,12 +522,12 @@ keys[2] = [
   {
     code: 'Enter',
     eng: {
-      caseDown: 'return',
-      caseUp: 'return',
+      caseDown: 'enter',
+      caseUp: 'enter',
     },
     rus: {
-      caseDown: 'return',
-      caseUp: 'return',
+      caseDown: 'enter',
+      caseUp: 'enter',
     },
   },
 ];

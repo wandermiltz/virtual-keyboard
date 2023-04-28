@@ -17,7 +17,7 @@ textarea.className = 'textarea';
 keyboard.className = 'keyboard';
 
 footer.className = 'footer';
-footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: command + space';
+footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: cmd + space';
 
 const body = document.querySelector('body');
 
@@ -68,7 +68,51 @@ function addKeyboardKeyValues() {
   for (let i = 0; i < keyboardKeysArr.length; i += 1) {
     for (let j = 0; j < keyboardKeysArr[i].length; j += 1) {
       keyboardKeysArr[i][j].classList.add(keys[i][j].code);
-      keyboardKeysArr[i][j].innerText = keys[i][j].eng.caseDown;
+
+      const engKey = document.createElement('span');
+      const rusKey = document.createElement('span');
+
+      engKey.classList.add('eng');
+      rusKey.classList.add('rus');
+      rusKey.classList.add('hidden');
+
+      const caseDownEng = document.createElement('span');
+      const caseUpEng = document.createElement('span');
+      const shiftCapsEng = document.createElement('span');
+      const capsEng = document.createElement('span');
+
+      const caseDownRus = document.createElement('span');
+      const caseUpRus = document.createElement('span');
+      const shiftCapsRus = document.createElement('span');
+      const capsRus = document.createElement('span');
+
+      caseDownEng.classList.add('caseDown');
+      caseUpEng.classList.add('caseUp');
+      caseUpEng.classList.add('hidden');
+      shiftCapsEng.classList.add('shiftCaps');
+      shiftCapsEng.classList.add('hidden');
+      capsEng.classList.add('caps');
+      capsEng.classList.add('hidden');
+
+      caseDownRus.classList.add('caseDown');
+      caseUpRus.classList.add('caseUp');
+      shiftCapsRus.classList.add('shiftCaps');
+      capsRus.classList.add('caps');
+
+      caseDownEng.innerText = keys[i][j].eng.caseDown;
+      caseUpEng.innerText = keys[i][j].eng.caseUp;
+
+      caseDownRus.innerText = keys[i][j].rus.caseDown;
+      caseUpRus.innerText = keys[i][j].rus.caseUp;
+
+      keyboardKeysArr[i][j].append(engKey);
+      keyboardKeysArr[i][j].append(rusKey);
+
+      engKey.append(caseDownEng);
+      engKey.append(caseUpEng);
+
+      rusKey.append(caseDownRus);
+      rusKey.append(caseUpRus);
     }
   }
 }

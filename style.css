@@ -9,7 +9,7 @@ body {
 }
 
 .title {
-  font-size: 30px;
+  font-size: 28px;
   line-height: 50px;
   color: #37393F;
   text-align: center;
@@ -47,10 +47,15 @@ body {
 }
 
 .keyboard__key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   background-color: #37393F;
+  font-size: 14px;
+  color: #fff;
 }
 
 .footer {
@@ -75,4 +80,8 @@ body {
 .MetaRight,
 .MetaLeft {
   width: 60px;
+}
+
+.hidden {
+  display: none;
 }
