@@ -162,15 +162,6 @@ body.addEventListener('keydown', (event) => {
   event.preventDefault();
   document.querySelector(`.${event.code}`).classList.add('pressed');
 
-  if (event.code === 'Enter') {
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const text = textarea.value;
-    textarea.value = `${text.slice(0, start)}\n${text.slice(end)}`;
-    textarea.selectionStart = start + 1;
-    textarea.selectionEnd = start + 1;
-  }
-
   if (!functionalKeys.includes(event.code)) {
     const key = document.querySelector(`.${event.code}`).innerText;
     const start = textarea.selectionStart;
@@ -181,12 +172,31 @@ body.addEventListener('keydown', (event) => {
     textarea.selectionEnd = start + 1;
   }
 
+  if (event.code === 'Enter') {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    textarea.value = `${text.slice(0, start)}\n${text.slice(end)}`;
+    textarea.selectionStart = start + 1;
+    textarea.selectionEnd = start + 1;
+  }
+
   if (event.code === 'Tab') {
     const tab = '    ';
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
     const text = textarea.value;
     textarea.value = `${text.slice(0, start)}${tab}${text.slice(end)}`;
+    textarea.selectionStart = start + 4;
+    textarea.selectionEnd = start + 4;
+  }
+
+  if (event.code === 'Space') {
+    const space = ' ';
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    textarea.value = `${text.slice(0, start)}${space}${text.slice(end)}`;
     textarea.selectionStart = start + 4;
     textarea.selectionEnd = start + 4;
   }
