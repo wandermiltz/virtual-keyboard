@@ -190,6 +190,21 @@ body.addEventListener('keydown', (event) => {
     textarea.selectionStart = start + 4;
     textarea.selectionEnd = start + 4;
   }
+
+  if (event.code === 'Backspace') {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    if (start === end) {
+      textarea.value = `${text.slice(0, start - 1)}${text.slice(end)}`;
+      textarea.selectionStart = start - 1;
+      textarea.selectionEnd = start - 1;
+    } else {
+      textarea.value = `${text.slice(0, start)}${text.slice(end)}`;
+      textarea.selectionStart = start;
+      textarea.selectionEnd = start;
+    }
+  }
 });
 
 body.addEventListener('keyup', (event) => {
