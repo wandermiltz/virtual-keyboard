@@ -118,3 +118,20 @@ function addKeyboardKeyValues() {
 }
 
 addKeyboardKeyValues();
+
+const keyboardKeys = document.querySelectorAll('.keyboard__key');
+
+keyboardKeys.forEach((key) => {
+  key.addEventListener('mouseover', (e) => {
+    e.currentTarget.classList.add('hover');
+  });
+  key.addEventListener('mouseout', (e) => {
+    e.currentTarget.classList.remove('hover');
+  });
+  key.addEventListener('mousedown', (e) => {
+    e.currentTarget.classList.add('pressed');
+  });
+  key.addEventListener('mouseup', (e) => {
+    e.currentTarget.classList.remove('pressed');
+  });
+});
