@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import keys from './keyboard-keys.js';
 
 const header = document.createElement('header');

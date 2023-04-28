@@ -13,6 +13,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'linebreak-style': 0,
+    'import/extensions': 'off',
   },
 };
