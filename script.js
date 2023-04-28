@@ -121,16 +121,45 @@ addKeyboardKeyValues();
 const keyboardKeys = document.querySelectorAll('.keyboard__key');
 
 keyboardKeys.forEach((key) => {
-  key.addEventListener('mouseover', (e) => {
-    e.currentTarget.classList.add('hover');
+  key.addEventListener('mouseover', (event) => {
+    event.currentTarget.classList.add('hover');
   });
-  key.addEventListener('mouseout', (e) => {
-    e.currentTarget.classList.remove('hover');
+
+  key.addEventListener('mouseout', (event) => {
+    event.currentTarget.classList.remove('hover');
   });
-  key.addEventListener('mousedown', (e) => {
-    e.currentTarget.classList.add('pressed');
+
+  key.addEventListener('mousedown', (event) => {
+    event.currentTarget.classList.add('pressed');
+
+    const keyboardEvent = new KeyboardEvent('keydown', {
+      code: event.currentTarget.classList[1],
+      key: event.currentTarget.innerText,
+    });
+    console.log(keyboardEvent);
+    body.dispatchEvent(keyboardEvent);
   });
-  key.addEventListener('mouseup', (e) => {
-    e.currentTarget.classList.remove('pressed');
+
+  key.addEventListener('mouseup', (event) => {
+    event.currentTarget.classList.remove('pressed');
+
+    const keyboardEvent = new KeyboardEvent('keyup', {
+      code: event.currentTarget.classList[1],
+      key: event.currentTarget.innerText,
+    });
+    console.log(keyboardEvent);
+    body.dispatchEvent(keyboardEvent);
   });
+});
+
+body.addEventListener('keydown', (event) => {
+  if (event.code === 'Enter') {
+    console.log(event.code);
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    textarea.value = `${text.slice(0, textarea.selectionStart)}\n${text.slice(end)}`;
+    textarea.selectionStart = start + 1;
+    textarea.selectionEnd = start + 1;
+  }
 });
