@@ -1,4 +1,5 @@
 import { allKeys, functionalKeys } from './keyboard-keys.js';
+import { getCurrentState, setLang, setLocalStorage } from './state.js';
 
 const header = document.createElement('header');
 const main = document.createElement('main');
@@ -17,7 +18,7 @@ textarea.setAttribute('autofocus', '');
 keyboard.className = 'keyboard';
 
 footer.className = 'footer';
-footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: cmd + space';
+footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: cmd + space or ctrl + space';
 
 const body = document.querySelector('body');
 
@@ -157,6 +158,11 @@ keyboardKeys.forEach((key) => {
   });
 });
 
+let cmdIsPressed = false;
+let ctrlIsPressed = false;
+
+setLocalStorage();
+
 body.addEventListener('keydown', (event) => {
   console.log(event.code);
   event.preventDefault();
@@ -215,9 +221,50 @@ body.addEventListener('keydown', (event) => {
       textarea.selectionEnd = start;
     }
   }
+
+  if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
+    cmdIsPressed = true;
+    console.log('cmdIsPressed true');
+  }
+
+  if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
+    cmdIsPressed = true;
+    console.log('ctrlIsPressed true');
+  }
+
+  if (cmdIsPressed && event.code === 'Space') {
+    if (getCurrentState().keyLang === 'eng') {
+      console.log('rus');
+      setLang('rus');
+    } else {
+      console.log('eng');
+      setLang('eng');
+    }
+    setLocalStorage();
+  }
+  if (ctrlIsPressed && event.code === 'Space') {
+    if (getCurrentState().keyLang === 'eng') {
+      console.log('rus');
+      setLang('rus');
+    } else {
+      console.log('eng');
+      setLang('eng');
+    }
+    setLocalStorage();
+  }
 });
 
 body.addEventListener('keyup', (event) => {
   event.preventDefault();
   document.querySelector(`.${event.code}`).classList.remove('pressed');
+
+  if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
+    cmdIsPressed = false;
+    console.log('cmdIsPressed false');
+  }
+
+  if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
+    ctrlIsPressed = false;
+    console.log('ctrlIsPressed false');
+  }
 });
