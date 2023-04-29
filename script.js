@@ -18,7 +18,7 @@ textarea.setAttribute('autofocus', '');
 keyboard.className = 'keyboard';
 
 footer.className = 'footer';
-footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the key combination: cmd + space or ctrl + space';
+footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the keys:\ncmd + space or ctrl + space';
 
 const body = document.querySelector('body');
 
@@ -79,7 +79,6 @@ function addKeyboardKeyValues() {
 
       engKey.classList.add('eng');
       rusKey.classList.add('rus');
-      rusKey.classList.add('hidden');
 
       const caseDownEng = document.createElement('span');
       const caseUpEng = document.createElement('span');
@@ -101,8 +100,11 @@ function addKeyboardKeyValues() {
 
       caseDownRus.classList.add('caseDown');
       caseUpRus.classList.add('caseUp');
+      caseUpRus.classList.add('hidden');
       shiftCapsRus.classList.add('shiftCaps');
+      shiftCapsRus.classList.add('hidden');
       capsRus.classList.add('caps');
+      capsRus.classList.add('hidden');
 
       caseDownEng.innerText = allKeys[i][j].eng.caseDown;
       caseUpEng.innerText = allKeys[i][j].eng.caseUp;
@@ -123,6 +125,38 @@ function addKeyboardKeyValues() {
 }
 
 addKeyboardKeyValues();
+
+const setKeyboardLang = (keyLang) => {
+  const rusKeys = document.querySelectorAll('.rus');
+  rusKeys.forEach((el) => {
+    el.classList.add('hidden');
+  });
+  const engKeys = document.querySelectorAll('.eng');
+  engKeys.forEach((el) => {
+    el.classList.add('hidden');
+  });
+  const keys = document.querySelectorAll(`.${keyLang}`);
+  keys.forEach((el) => {
+    el.classList.remove('hidden');
+  });
+};
+
+const currentLang = getCurrentState().keyLang;
+setKeyboardLang(currentLang);
+
+const changeLang = () => {
+  let lang = getCurrentState().keyLang;
+  if (lang === 'eng') {
+    console.log('set rus');
+    setLang('rus');
+  } else {
+    console.log('set eng');
+    setLang('eng');
+  }
+  setLocalStorage();
+  lang = getCurrentState().keyLang;
+  setKeyboardLang(lang);
+};
 
 const keyboardKeys = document.querySelectorAll('.keyboard__key');
 
@@ -160,8 +194,6 @@ keyboardKeys.forEach((key) => {
 
 let cmdIsPressed = false;
 let ctrlIsPressed = false;
-
-setLocalStorage();
 
 body.addEventListener('keydown', (event) => {
   console.log(event.code);
@@ -233,24 +265,10 @@ body.addEventListener('keydown', (event) => {
   }
 
   if (cmdIsPressed && event.code === 'Space') {
-    if (getCurrentState().keyLang === 'eng') {
-      console.log('rus');
-      setLang('rus');
-    } else {
-      console.log('eng');
-      setLang('eng');
-    }
-    setLocalStorage();
+    changeLang();
   }
   if (ctrlIsPressed && event.code === 'Space') {
-    if (getCurrentState().keyLang === 'eng') {
-      console.log('rus');
-      setLang('rus');
-    } else {
-      console.log('eng');
-      setLang('eng');
-    }
-    setLocalStorage();
+    changeLang();
   }
 });
 
