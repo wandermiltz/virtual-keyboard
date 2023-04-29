@@ -1,4 +1,4 @@
-export const setCaseByShift = (isPressed) => {
+const setKeyboardCase = (isPressed) => {
   if (isPressed) {
     const downKeys = document.querySelectorAll('.caseDown');
     downKeys.forEach((el) => {
@@ -20,4 +20,4 @@ export const setCaseByShift = (isPressed) => {
   }
 };
 
-export const setCaseByCapsLock = () => { };
+export default setKeyboardCase;

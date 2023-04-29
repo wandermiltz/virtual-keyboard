@@ -1,6 +1,6 @@
 import { allKeys, functionalKeys } from './keyboard-keys.js';
 import { getCurrentState, changeLang, setKeyboardLang } from './change-lang.js';
-import { setCaseByShift } from './change-case.js';
+import setKeyboardCase from './change-case.js';
 
 const header = document.createElement('header');
 const main = document.createElement('main');
@@ -128,6 +128,7 @@ function addKeyboardKeyValues() {
 let isCmdPressed = false;
 let isCtrlPressed = false;
 let isShiftPressed = false;
+let isCapsPressed = false;
 
 addKeyboardKeyValues();
 const currentLang = getCurrentState().keyLang;
@@ -243,16 +244,28 @@ body.addEventListener('keydown', (event) => {
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     isShiftPressed = true;
     console.log('isShiftPressed true');
+    setKeyboardCase(isShiftPressed);
+    console.log('setUpperCaseByShift');
   }
 
-  if (isShiftPressed) {
-    setCaseByShift(isShiftPressed);
-    console.log('setUpperCaseByShift');
+  if (event.code === 'CapsLock') {
+    if (isCapsPressed) {
+      isCapsPressed = false;
+      console.log('isCapsPressed false');
+      document.querySelector(`.${event.code}`).classList.remove('pressed');
+      setKeyboardCase(isCapsPressed);
+    } else {
+      isCapsPressed = true;
+      console.log('isCapsPressed true');
+      document.querySelector(`.${event.code}`).classList.add('pressed');
+      setKeyboardCase(isCapsPressed);
+    }
   }
 });
 
 body.addEventListener('keyup', (event) => {
   event.preventDefault();
+
   document.querySelector(`.${event.code}`).classList.remove('pressed');
 
   if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
@@ -267,7 +280,10 @@ body.addEventListener('keyup', (event) => {
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     isShiftPressed = false;
     console.log('isShiftPressed false');
-    setCaseByShift(isShiftPressed);
+    setKeyboardCase(isShiftPressed);
     console.log('returnToLowerCaseByShift');
+  }
+  if (event.code === 'CapsLock' && isCapsPressed) {
+    document.querySelector(`.${event.code}`).classList.add('pressed');
   }
 });
