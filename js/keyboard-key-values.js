@@ -1,4 +1,4 @@
-export const functionalKeys = [
+export const functionalKeyValues = [
   'AltLeft',
   'AltRight',
   'CapsLock',
@@ -15,9 +15,9 @@ export const functionalKeys = [
   'ShiftRight',
 ];
 
-export const allKeys = [];
+export const allKeyValues = [];
 
-allKeys[0] = [
+allKeyValues[0] = [
   {
     code: 'Backquote',
     eng: {
@@ -225,7 +225,7 @@ allKeys[0] = [
     },
   },
 ];
-allKeys[1] = [
+allKeyValues[1] = [
   {
     code: 'Tab',
     eng: {
@@ -394,7 +394,7 @@ allKeys[1] = [
   },
 ];
 
-allKeys[2] = [
+allKeyValues[2] = [
   {
     code: 'CapsLock',
     eng: {
@@ -549,7 +549,7 @@ allKeys[2] = [
   },
 ];
 
-allKeys[3] = [
+allKeyValues[3] = [
   {
     code: 'ShiftLeft',
     eng: {
@@ -707,7 +707,7 @@ allKeys[3] = [
   },
 ];
 
-allKeys[4] = [
+allKeyValues[4] = [
   {
     code: 'ControlLeft',
     eng: {

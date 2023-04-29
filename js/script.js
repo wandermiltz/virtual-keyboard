@@ -1,4 +1,5 @@
-import { allKeys, functionalKeys } from './keyboard-keys.js';
+import { allKeyValues, functionalKeyValues } from './keyboard-key-values.js';
+import { getKeyboardRows, getKeyboardKeys, addKeyboardKeyValues } from './keyboard-generate.js';
 import { getCurrentState, changeLang, setKeyboardLang } from './change-lang.js';
 import setKeyboardCase from './change-case.js';
 
@@ -35,26 +36,6 @@ textarea.addEventListener('blur', () => {
   textarea.focus();
 });
 
-function getKeyboardRows(rowsCount) {
-  const keyboardRowsArr = [];
-  for (let i = 0; i < rowsCount; i += 1) {
-    const keyboardRow = document.createElement('div');
-    keyboardRow.className = 'keyboard__row';
-    keyboardRowsArr.push(keyboardRow);
-  }
-  return keyboardRowsArr;
-}
-
-function getKeyboardKeys(keyCount) {
-  const keyboardKeysArr = [];
-  for (let i = 0; i < keyCount; i += 1) {
-    const keyboardKey = document.createElement('div');
-    keyboardKey.className = 'keyboard__key';
-    keyboardKeysArr.push(keyboardKey);
-  }
-  return keyboardKeysArr;
-}
-
 const keyboardRowsArr = getKeyboardRows(5);
 const keyboardKeysArr = [];
 keyboardKeysArr[0] = getKeyboardKeys(14);
@@ -70,67 +51,12 @@ keyboardRowsArr[2].append(...keyboardKeysArr[2]);
 keyboardRowsArr[3].append(...keyboardKeysArr[3]);
 keyboardRowsArr[4].append(...keyboardKeysArr[4]);
 
-function addKeyboardKeyValues() {
-  for (let i = 0; i < keyboardKeysArr.length; i += 1) {
-    for (let j = 0; j < keyboardKeysArr[i].length; j += 1) {
-      keyboardKeysArr[i][j].classList.add(allKeys[i][j].code);
-
-      const engKey = document.createElement('span');
-      const rusKey = document.createElement('span');
-
-      engKey.classList.add('eng');
-      rusKey.classList.add('rus');
-
-      const caseDownEng = document.createElement('span');
-      const caseUpEng = document.createElement('span');
-      const shiftCapsEng = document.createElement('span');
-      const capsEng = document.createElement('span');
-
-      const caseDownRus = document.createElement('span');
-      const caseUpRus = document.createElement('span');
-      const shiftCapsRus = document.createElement('span');
-      const capsRus = document.createElement('span');
-
-      caseDownEng.classList.add('caseDown');
-      caseUpEng.classList.add('caseUp');
-      caseUpEng.classList.add('hidden');
-      shiftCapsEng.classList.add('shiftCaps');
-      shiftCapsEng.classList.add('hidden');
-      capsEng.classList.add('caps');
-      capsEng.classList.add('hidden');
-
-      caseDownRus.classList.add('caseDown');
-      caseUpRus.classList.add('caseUp');
-      caseUpRus.classList.add('hidden');
-      shiftCapsRus.classList.add('shiftCaps');
-      shiftCapsRus.classList.add('hidden');
-      capsRus.classList.add('caps');
-      capsRus.classList.add('hidden');
-
-      caseDownEng.innerText = allKeys[i][j].eng.caseDown;
-      caseUpEng.innerText = allKeys[i][j].eng.caseUp;
-
-      caseDownRus.innerText = allKeys[i][j].rus.caseDown;
-      caseUpRus.innerText = allKeys[i][j].rus.caseUp;
-
-      keyboardKeysArr[i][j].append(engKey);
-      keyboardKeysArr[i][j].append(rusKey);
-
-      engKey.append(caseDownEng);
-      engKey.append(caseUpEng);
-
-      rusKey.append(caseDownRus);
-      rusKey.append(caseUpRus);
-    }
-  }
-}
-
 let isCmdPressed = false;
 let isCtrlPressed = false;
 let isShiftPressed = false;
 let isCapsPressed = false;
 
-addKeyboardKeyValues();
+addKeyboardKeyValues(keyboardKeysArr, allKeyValues);
 const currentLang = getCurrentState().keyLang;
 setKeyboardLang(currentLang);
 
@@ -170,7 +96,7 @@ body.addEventListener('keydown', (event) => {
   event.preventDefault();
   document.querySelector(`.${event.code}`).classList.add('pressed');
 
-  if (!functionalKeys.includes(event.code)) {
+  if (!functionalKeyValues.includes(event.code)) {
     const key = document.querySelector(`.${event.code}`).innerText;
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
