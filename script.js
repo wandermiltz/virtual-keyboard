@@ -152,7 +152,6 @@ keyboardKeys.forEach((key) => {
       code: event.currentTarget.classList[1],
       key: event.currentTarget.innerText,
     });
-    console.log(keyboardEvent);
     body.dispatchEvent(keyboardEvent);
   });
 
@@ -163,13 +162,11 @@ keyboardKeys.forEach((key) => {
       code: event.currentTarget.classList[1],
       key: event.currentTarget.innerText,
     });
-    console.log(keyboardEvent);
     body.dispatchEvent(keyboardEvent);
   });
 });
 
 body.addEventListener('keydown', (event) => {
-  console.log(event.code);
   event.preventDefault();
   document.querySelector(`.${event.code}`).classList.add('pressed');
 
@@ -229,12 +226,10 @@ body.addEventListener('keydown', (event) => {
 
   if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
     isCmdPressed = true;
-    console.log('isCmdPressed true');
   }
 
   if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
     isCtrlPressed = true;
-    console.log('isCtrlPressed true');
   }
 
   if ((isCmdPressed || isCtrlPressed) && event.code === 'Space') {
@@ -243,20 +238,20 @@ body.addEventListener('keydown', (event) => {
 
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     isShiftPressed = true;
-    console.log('isShiftPressed true');
-    setKeyboardCase(isShiftPressed);
-    console.log('setUpperCaseByShift');
+    if (isCapsPressed) {
+      setKeyboardCase(!isShiftPressed);
+    } else {
+      setKeyboardCase(isShiftPressed);
+    }
   }
 
   if (event.code === 'CapsLock') {
     if (isCapsPressed) {
       isCapsPressed = false;
-      console.log('isCapsPressed false');
       document.querySelector(`.${event.code}`).classList.remove('pressed');
       setKeyboardCase(isCapsPressed);
     } else {
       isCapsPressed = true;
-      console.log('isCapsPressed true');
       document.querySelector(`.${event.code}`).classList.add('pressed');
       setKeyboardCase(isCapsPressed);
     }
@@ -270,18 +265,18 @@ body.addEventListener('keyup', (event) => {
 
   if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
     isCmdPressed = false;
-    console.log('isCmdPressed false');
   }
 
   if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
     isCtrlPressed = false;
-    console.log('isCtrlPressed false');
   }
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     isShiftPressed = false;
-    console.log('isShiftPressed false');
-    setKeyboardCase(isShiftPressed);
-    console.log('returnToLowerCaseByShift');
+    if (isCapsPressed) {
+      setKeyboardCase(isCapsPressed);
+    } else {
+      setKeyboardCase(isShiftPressed);
+    }
   }
   if (event.code === 'CapsLock' && isCapsPressed) {
     document.querySelector(`.${event.code}`).classList.add('pressed');

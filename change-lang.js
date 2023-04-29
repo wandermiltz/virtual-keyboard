@@ -12,7 +12,6 @@ export const setLang = (keyLang) => {
 
 export const setLocalStorage = () => {
   localStorage.setItem('keyLang', state.keyLang);
-  console.log('setLocalStorage');
 };
 
 export const setKeyboardLang = (keyLang) => {
@@ -33,10 +32,8 @@ export const setKeyboardLang = (keyLang) => {
 export const changeLang = () => {
   let lang = getCurrentState().keyLang;
   if (lang === 'eng') {
-    console.log('set rus');
     setLang('rus');
   } else {
-    console.log('set eng');
     setLang('eng');
   }
   setLocalStorage();
