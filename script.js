@@ -1,5 +1,6 @@
 import { allKeys, functionalKeys } from './keyboard-keys.js';
-import { getCurrentState, setLang, setLocalStorage } from './state.js';
+import { getCurrentState, changeLang, setKeyboardLang } from './change-lang.js';
+import { setCaseByShift } from './change-case.js';
 
 const header = document.createElement('header');
 const main = document.createElement('main');
@@ -124,61 +125,13 @@ function addKeyboardKeyValues() {
   }
 }
 
+let isCmdPressed = false;
+let ctrlIsPressed = false;
+let isShiftPressed = false;
+
 addKeyboardKeyValues();
-
-const setKeyboardLang = (keyLang) => {
-  const rusKeys = document.querySelectorAll('.rus');
-  rusKeys.forEach((el) => {
-    el.classList.add('hidden');
-  });
-  const engKeys = document.querySelectorAll('.eng');
-  engKeys.forEach((el) => {
-    el.classList.add('hidden');
-  });
-  const keys = document.querySelectorAll(`.${keyLang}`);
-  keys.forEach((el) => {
-    el.classList.remove('hidden');
-  });
-};
-
 const currentLang = getCurrentState().keyLang;
 setKeyboardLang(currentLang);
-
-const changeLang = () => {
-  let lang = getCurrentState().keyLang;
-  if (lang === 'eng') {
-    console.log('set rus');
-    setLang('rus');
-  } else {
-    console.log('set eng');
-    setLang('eng');
-  }
-  setLocalStorage();
-  lang = getCurrentState().keyLang;
-  setKeyboardLang(lang);
-};
-
-const setCaseByShift = (isPressed) => {
-  if (isPressed) {
-    const downKeys = document.querySelectorAll('.caseDown');
-    downKeys.forEach((el) => {
-      el.classList.add('hidden');
-    });
-    const upKeys = document.querySelectorAll('.caseUp');
-    upKeys.forEach((el) => {
-      el.classList.remove('hidden');
-    });
-  } else {
-    const downKeys = document.querySelectorAll('.caseDown');
-    downKeys.forEach((el) => {
-      el.classList.remove('hidden');
-    });
-    const upKeys = document.querySelectorAll('.caseUp');
-    upKeys.forEach((el) => {
-      el.classList.add('hidden');
-    });
-  }
-};
 
 const keyboardKeys = document.querySelectorAll('.keyboard__key');
 
@@ -213,10 +166,6 @@ keyboardKeys.forEach((key) => {
     body.dispatchEvent(keyboardEvent);
   });
 });
-
-let isCmdPressed = false;
-let ctrlIsPressed = false;
-let isShiftPressed = false;
 
 body.addEventListener('keydown', (event) => {
   console.log(event.code);
