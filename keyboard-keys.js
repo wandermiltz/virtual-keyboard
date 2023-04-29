@@ -216,12 +216,12 @@ allKeys[0] = [
   {
     code: 'Backspace',
     eng: {
-      caseDown: 'delete',
-      caseUp: 'delete',
+      caseDown: 'backspace',
+      caseUp: 'backspace',
     },
     rus: {
-      caseDown: 'delete',
-      caseUp: 'delete',
+      caseDown: 'backspace',
+      caseUp: 'backspace',
     },
   },
 ];

@@ -158,6 +158,28 @@ const changeLang = () => {
   setKeyboardLang(lang);
 };
 
+const setCaseByShift = (isPressed) => {
+  if (isPressed) {
+    const downKeys = document.querySelectorAll('.caseDown');
+    downKeys.forEach((el) => {
+      el.classList.add('hidden');
+    });
+    const upKeys = document.querySelectorAll('.caseUp');
+    upKeys.forEach((el) => {
+      el.classList.remove('hidden');
+    });
+  } else {
+    const downKeys = document.querySelectorAll('.caseDown');
+    downKeys.forEach((el) => {
+      el.classList.remove('hidden');
+    });
+    const upKeys = document.querySelectorAll('.caseUp');
+    upKeys.forEach((el) => {
+      el.classList.add('hidden');
+    });
+  }
+};
+
 const keyboardKeys = document.querySelectorAll('.keyboard__key');
 
 keyboardKeys.forEach((key) => {
@@ -192,8 +214,9 @@ keyboardKeys.forEach((key) => {
   });
 });
 
-let cmdIsPressed = false;
+let isCmdPressed = false;
 let ctrlIsPressed = false;
+let isShiftPressed = false;
 
 body.addEventListener('keydown', (event) => {
   console.log(event.code);
@@ -255,20 +278,30 @@ body.addEventListener('keydown', (event) => {
   }
 
   if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
-    cmdIsPressed = true;
-    console.log('cmdIsPressed true');
+    isCmdPressed = true;
+    console.log('isCmdPressed true');
   }
 
   if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
-    cmdIsPressed = true;
+    isCmdPressed = true;
     console.log('ctrlIsPressed true');
   }
 
-  if (cmdIsPressed && event.code === 'Space') {
+  if (isCmdPressed && event.code === 'Space') {
     changeLang();
   }
   if (ctrlIsPressed && event.code === 'Space') {
     changeLang();
+  }
+
+  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+    isShiftPressed = true;
+    console.log('isShiftPressed true');
+  }
+
+  if (isShiftPressed) {
+    setCaseByShift(isShiftPressed);
+    console.log('setUpperCaseByShift');
   }
 });
 
@@ -277,12 +310,21 @@ body.addEventListener('keyup', (event) => {
   document.querySelector(`.${event.code}`).classList.remove('pressed');
 
   if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
-    cmdIsPressed = false;
-    console.log('cmdIsPressed false');
+    isCmdPressed = false;
+    console.log('isCmdPressed false');
   }
 
   if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
     ctrlIsPressed = false;
     console.log('ctrlIsPressed false');
+  }
+  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+    isShiftPressed = false;
+    console.log('isShiftPressed false');
+  }
+
+  if (!isShiftPressed) {
+    setCaseByShift(isShiftPressed);
+    console.log('returnToLowerCaseByShift');
   }
 });
