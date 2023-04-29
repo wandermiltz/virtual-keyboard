@@ -126,7 +126,7 @@ function addKeyboardKeyValues() {
 }
 
 let isCmdPressed = false;
-let ctrlIsPressed = false;
+let isCtrlPressed = false;
 let isShiftPressed = false;
 
 addKeyboardKeyValues();
@@ -201,7 +201,7 @@ body.addEventListener('keydown', (event) => {
     textarea.selectionEnd = start + 4;
   }
 
-  if (event.code === 'Space') {
+  if (event.code === 'Space' && !(isCtrlPressed || isCmdPressed)) {
     const space = ' ';
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
@@ -232,14 +232,11 @@ body.addEventListener('keydown', (event) => {
   }
 
   if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
-    isCmdPressed = true;
-    console.log('ctrlIsPressed true');
+    isCtrlPressed = true;
+    console.log('isCtrlPressed true');
   }
 
-  if (isCmdPressed && event.code === 'Space') {
-    changeLang();
-  }
-  if (ctrlIsPressed && event.code === 'Space') {
+  if ((isCmdPressed || isCtrlPressed) && event.code === 'Space') {
     changeLang();
   }
 
@@ -264,15 +261,12 @@ body.addEventListener('keyup', (event) => {
   }
 
   if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
-    ctrlIsPressed = false;
-    console.log('ctrlIsPressed false');
+    isCtrlPressed = false;
+    console.log('isCtrlPressed false');
   }
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     isShiftPressed = false;
     console.log('isShiftPressed false');
-  }
-
-  if (!isShiftPressed) {
     setCaseByShift(isShiftPressed);
     console.log('returnToLowerCaseByShift');
   }
