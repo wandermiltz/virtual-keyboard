@@ -29,7 +29,7 @@ keyboard.className = cssClasses.KEYBOARD;
 footer.className = cssClasses.FOOTER;
 
 title.innerText = 'Virtual Keyboard';
-footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the keys:\nctrl + space or cmd + space';
+footer.innerText = 'To change language, use the keys:\nctrl + space or cmd + space\n\nThis keyboard was made on the macOS operating system';
 
 const keyboardRowsArr = generateKeyboardElements(5, cssClasses.KEYBOARD__ROW);
 const keyboardKeysArr = [];

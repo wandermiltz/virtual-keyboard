@@ -9,9 +9,9 @@ body {
 }
 
 .title {
-  font-size: 28px;
-  line-height: 50px;
-  color: #37393F;
+  font-size: 24px;
+  line-height: 42px;
+  color: #37393f;
   text-align: center;
   font-weight: normal;
 }
@@ -28,15 +28,16 @@ body {
   height: 150px;
   padding: 15px;
   font-size: 18px;
-  color: #37393F;
+  color: #37393f;
 }
 
 .keyboard {
   width: 800px;
   padding: 10px;
-  background: #A6ABBD;
-  border: 2px solid #37393F;
+  background: #a6abbd;
+  border: 1px solid #7b7f8d;
   border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .keyboard__row {
@@ -53,7 +54,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: #37393F;
+  background-color: #37393f;
   font-size: 16px;
   color: #fff;
   transition: 0.3s;
@@ -61,9 +62,9 @@ body {
 }
 
 .footer {
-  padding-top: 30px;
+  padding-top: 35px;
+  line-height: 24px;
   text-align: center;
-  line-height: 30px;
 }
 
 .Enter,
