@@ -3,50 +3,49 @@ import { generateKeyboardElements, addKeyboardKeyValues } from './keyboard-gener
 import { getCurrentState, changeLang, setKeyboardLang } from './change-lang.js';
 import setKeyboardCase from './change-case.js';
 
+const body = document.querySelector('body');
 const header = document.createElement('header');
 const main = document.createElement('main');
 const section = document.createElement('section');
 const textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
-const h1 = document.createElement('h1');
+const title = document.createElement('h1');
 const footer = document.createElement('footer');
 
-h1.innerText = 'Virtual Keyboard';
-h1.className = 'title';
+const cssClasses = {
+  TITLE: 'title',
+  SECTION: 'section',
+  TEXTAREA: 'textarea',
+  KEYBOARD: 'keyboard',
+  FOOTER: 'footer',
+  KEYBOARD__ROW: 'keyboard__row',
+  KEYBOARD__KEY: 'keyboard__key',
+};
 
-section.className = 'section';
-textarea.className = 'textarea';
-textarea.setAttribute('autofocus', '');
-keyboard.className = 'keyboard';
+title.className = cssClasses.TITLE;
+section.className = cssClasses.SECTION;
+textarea.className = cssClasses.TEXTAREA;
+keyboard.className = cssClasses.KEYBOARD;
+footer.className = cssClasses.FOOTER;
 
-footer.className = 'footer';
-footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the keys:\ncmd + space or ctrl + space';
+title.innerText = 'Virtual Keyboard';
+footer.innerText = 'This keyboard is created on the macOS operating system.\nTo change the language, use the keys:\nctrl + space or cmd + space';
 
-const body = document.querySelector('body');
+const keyboardRowsArr = generateKeyboardElements(5, cssClasses.KEYBOARD__ROW);
+const keyboardKeysArr = [];
+keyboardKeysArr[0] = generateKeyboardElements(14, cssClasses.KEYBOARD__KEY);
+keyboardKeysArr[1] = generateKeyboardElements(14, cssClasses.KEYBOARD__KEY);
+keyboardKeysArr[2] = generateKeyboardElements(13, cssClasses.KEYBOARD__KEY);
+keyboardKeysArr[3] = generateKeyboardElements(13, cssClasses.KEYBOARD__KEY);
+keyboardKeysArr[4] = generateKeyboardElements(10, cssClasses.KEYBOARD__KEY);
 
 body.append(header);
 body.append(main);
 body.append(footer);
 main.append(section);
-header.append(h1);
+header.append(title);
 section.append(textarea);
 section.append(keyboard);
-
-textarea.addEventListener('blur', () => {
-  textarea.focus();
-});
-
-const keyboardRowClassName = 'keyboard__row';
-const keyboardKeyClassName = 'keyboard__key';
-
-const keyboardRowsArr = generateKeyboardElements(5, keyboardRowClassName);
-const keyboardKeysArr = [];
-keyboardKeysArr[0] = generateKeyboardElements(14, keyboardKeyClassName);
-keyboardKeysArr[1] = generateKeyboardElements(14, keyboardKeyClassName);
-keyboardKeysArr[2] = generateKeyboardElements(13, keyboardKeyClassName);
-keyboardKeysArr[3] = generateKeyboardElements(13, keyboardKeyClassName);
-keyboardKeysArr[4] = generateKeyboardElements(10, keyboardKeyClassName);
-
 keyboard.append(...keyboardRowsArr);
 
 for (let i = 0; i < keyboardRowsArr.length; i += 1) {
@@ -62,7 +61,7 @@ addKeyboardKeyValues(keyboardKeysArr, allKeyValues);
 const currentLang = getCurrentState().keyLang;
 setKeyboardLang(currentLang);
 
-const keyboardKeys = document.querySelectorAll(`.${keyboardKeyClassName}`);
+const keyboardKeys = document.querySelectorAll(`.${cssClasses.KEYBOARD__KEY}`);
 
 keyboardKeys.forEach((key) => {
   key.addEventListener('mouseover', (event) => {
@@ -209,4 +208,9 @@ body.addEventListener('keyup', (event) => {
   if (event.code === 'CapsLock' && isCapsPressed) {
     document.querySelector(`.${event.code}`).classList.add('pressed');
   }
+});
+
+textarea.setAttribute('autofocus', '');
+textarea.addEventListener('blur', () => {
+  textarea.focus();
 });
