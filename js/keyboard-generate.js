@@ -1,24 +1,14 @@
-export function getKeyboardRows(rowsCount) {
-  const keyboardRowsArr = [];
-  for (let i = 0; i < rowsCount; i += 1) {
-    const keyboardRow = document.createElement('div');
-    keyboardRow.className = 'keyboard__row';
-    keyboardRowsArr.push(keyboardRow);
+export const generateKeyboardElements = (elementsCount, elementsClassName) => {
+  const keyboardElementsArr = [];
+  for (let i = 0; i < elementsCount; i += 1) {
+    const keyboardElement = document.createElement('div');
+    keyboardElement.className = elementsClassName;
+    keyboardElementsArr.push(keyboardElement);
   }
-  return keyboardRowsArr;
-}
+  return keyboardElementsArr;
+};
 
-export function getKeyboardKeys(keyCount) {
-  const keyboardKeysArr = [];
-  for (let i = 0; i < keyCount; i += 1) {
-    const keyboardKey = document.createElement('div');
-    keyboardKey.className = 'keyboard__key';
-    keyboardKeysArr.push(keyboardKey);
-  }
-  return keyboardKeysArr;
-}
-
-export function addKeyboardKeyValues(keyboardKeysArr, allKeyValues) {
+export const addKeyboardKeyValues = (keyboardKeysArr, allKeyValues) => {
   for (let i = 0; i < keyboardKeysArr.length; i += 1) {
     for (let j = 0; j < keyboardKeysArr[i].length; j += 1) {
       keyboardKeysArr[i][j].classList.add(allKeyValues[i][j].code);
@@ -71,4 +61,4 @@ export function addKeyboardKeyValues(keyboardKeysArr, allKeyValues) {
       rusKey.append(caseUpRus);
     }
   }
-}
+};

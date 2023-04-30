@@ -1,5 +1,5 @@
 import { allKeyValues, functionalKeyValues } from './keyboard-key-values.js';
-import { getKeyboardRows, getKeyboardKeys, addKeyboardKeyValues } from './keyboard-generate.js';
+import { generateKeyboardElements, addKeyboardKeyValues } from './keyboard-generate.js';
 import { getCurrentState, changeLang, setKeyboardLang } from './change-lang.js';
 import setKeyboardCase from './change-case.js';
 
@@ -36,20 +36,22 @@ textarea.addEventListener('blur', () => {
   textarea.focus();
 });
 
-const keyboardRowsArr = getKeyboardRows(5);
+const keyboardRowClassName = 'keyboard__row';
+const keyboardKeyClassName = 'keyboard__key';
+
+const keyboardRowsArr = generateKeyboardElements(5, keyboardRowClassName);
 const keyboardKeysArr = [];
-keyboardKeysArr[0] = getKeyboardKeys(14);
-keyboardKeysArr[1] = getKeyboardKeys(14);
-keyboardKeysArr[2] = getKeyboardKeys(13);
-keyboardKeysArr[3] = getKeyboardKeys(13);
-keyboardKeysArr[4] = getKeyboardKeys(10);
+keyboardKeysArr[0] = generateKeyboardElements(14, keyboardKeyClassName);
+keyboardKeysArr[1] = generateKeyboardElements(14, keyboardKeyClassName);
+keyboardKeysArr[2] = generateKeyboardElements(13, keyboardKeyClassName);
+keyboardKeysArr[3] = generateKeyboardElements(13, keyboardKeyClassName);
+keyboardKeysArr[4] = generateKeyboardElements(10, keyboardKeyClassName);
 
 keyboard.append(...keyboardRowsArr);
-keyboardRowsArr[0].append(...keyboardKeysArr[0]);
-keyboardRowsArr[1].append(...keyboardKeysArr[1]);
-keyboardRowsArr[2].append(...keyboardKeysArr[2]);
-keyboardRowsArr[3].append(...keyboardKeysArr[3]);
-keyboardRowsArr[4].append(...keyboardKeysArr[4]);
+
+for (let i = 0; i < keyboardRowsArr.length; i += 1) {
+  keyboardRowsArr[i].append(...keyboardKeysArr[i]);
+}
 
 let isCmdPressed = false;
 let isCtrlPressed = false;
@@ -60,7 +62,7 @@ addKeyboardKeyValues(keyboardKeysArr, allKeyValues);
 const currentLang = getCurrentState().keyLang;
 setKeyboardLang(currentLang);
 
-const keyboardKeys = document.querySelectorAll('.keyboard__key');
+const keyboardKeys = document.querySelectorAll(`.${keyboardKeyClassName}`);
 
 keyboardKeys.forEach((key) => {
   key.addEventListener('mouseover', (event) => {
