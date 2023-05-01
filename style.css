@@ -1,0 +1,110 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: monospace, sans-serif;
+  background-color: #f2f4fc;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 42px;
+  color: #37393f;
+  text-align: center;
+  font-weight: normal;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textarea {
+  margin-bottom: 40px;
+  width: 600px;
+  height: 150px;
+  padding: 15px;
+  font-size: 18px;
+  color: #37393f;
+}
+
+.keyboard {
+  width: 800px;
+  padding: 10px;
+  background: #a6abbd;
+  border: 1px solid #7b7f8d;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.keyboard__row {
+  display: flex;
+  justify-content: space-around;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.keyboard__key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #37393f;
+  font-size: 16px;
+  color: #fff;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.footer {
+  padding-top: 35px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.Enter,
+.Tab,
+.CapsLock,
+.ShiftLeft,
+.ShiftRight,
+.Backspace {
+  width: 90px;
+  font-size: 12px;
+}
+
+.ControlLeft,
+.ControlRight,
+.AltRight,
+.AltLeft {
+  font-size: 12px;
+}
+
+.Space {
+  width: 280px;
+  font-size: 12px;
+}
+
+.MetaRight,
+.MetaLeft {
+  width: 60px;
+  font-size: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.hover {
+  background-color: #89759d;
+  cursor: pointer;
+}
+
+.pressed {
+  background-color: #769561;
+  transform: translateY(2px);
+}
