@@ -117,11 +117,10 @@ body.addEventListener('keydown', (event) => {
   }
 
   if (event.code === 'Tab') {
-    const tab = '    ';
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
     const text = textarea.value;
-    textarea.value = `${text.slice(0, start)}${tab}${text.slice(end)}`;
+    textarea.value = `${text.slice(0, start)}\t${text.slice(end)}`;
     textarea.selectionStart = start + 4;
     textarea.selectionEnd = start + 4;
   }
